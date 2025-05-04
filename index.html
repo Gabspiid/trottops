@@ -1,73 +1,95 @@
+
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TrottOps</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module">
-      import React, { useState, useEffect } from "https://cdn.skypack.dev/react";
-      import ReactDOM from "https://cdn.skypack.dev/react-dom";
+<head>
+  <meta charset="UTF-8" />
+  <title>TrottOps</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .carousel-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+    .carousel-image.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white font-sans">
 
-      const App = () => {
-        const images = [
-          "man-riding-electric-scooter-around-city.jpg",
-          "pexels-g-force-bike-95411088-15648070.jpg.jpeg"
-        ];
+  <!-- Header Carousel -->
+  <section class="relative w-full h-screen overflow-hidden">
+    <img src="man-riding-electric-scooter-around-city.jpg" class="carousel-image active" />
+    <img src="pexels-g-force-bike-95411088-15648070.jpg" class="carousel-image" />
+    <div class="absolute inset-0 bg-blue-900 bg-opacity-40"></div>
+    <div class="relative z-10 h-full flex flex-col justify-center items-center text-center px-4">
+      <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Gestion complète. Sans stress.</h2>
+      <p class="text-lg text-gray-200 mb-6 max-w-xl">
+        TrottOps s'occupe de toutes les opérations de gestion locative de vos trottinettes : recharge, maintenance, sécurité, et gestion client.
+      </p>
+      <a href="https://calendly.com/contact-trottops" target="_blank" rel="noopener noreferrer" class="inline-block bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl text-white font-semibold transition">Demander un devis</a>
+    </div>
+  </section>
 
-        const [current, setCurrent] = useState(0);
+  <!-- Services -->
+  <section id="services" class="px-6 py-20 bg-gray-100 text-gray-900">
+    <h3 class="text-3xl font-bold text-center mb-12">Nos services</h3>
+    <div class="flex justify-center mb-10">
+      <span class="bg-green-500 text-white px-4 py-1 rounded-full text-sm font-semibold">Disponible 24/7</span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="text-xl font-semibold mb-2">Recharge & Batterie</h4>
+        <p class="text-gray-600">Intervention rapide pour recharger les trottinettes partout en ville.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="text-xl font-semibold mb-2">Maintenance & Réparation</h4>
+        <p class="text-gray-600">Diagnostic, réparation sur site ou en atelier. Moins de pannes, plus de rentabilité.</p>
+      </div>
+      <div class="bg-white rounded-xl shadow p-6">
+        <h4 class="text-xl font-semibold mb-2">Suivi & Localisation</h4>
+        <p class="text-gray-600">Traçabilité complète de votre flotte avec reporting personnalisé.</p>
+      </div>
+    </div>
+  </section>
 
-        useEffect(() => {
-          const interval = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % images.length);
-          }, 5000);
-          return () => clearInterval(interval);
-        }, []);
+  <!-- Contact -->
+  <section id="contact" class="px-6 py-20 bg-gray-800 text-white">
+    <div class="max-w-xl mx-auto text-center">
+      <h3 class="text-3xl font-bold text-center mb-6">Contactez-nous</h3>
+      <p class="mb-4 text-sm">📩 contact@trottops.com</p>
+      <form class="space-y-4 text-left">
+        <input type="text" placeholder="Nom" class="w-full px-4 py-3 rounded bg-gray-900 text-white placeholder-gray-400" />
+        <input type="email" placeholder="Email" class="w-full px-4 py-3 rounded bg-gray-900 text-white placeholder-gray-400" />
+        <textarea placeholder="Votre message..." class="w-full px-4 py-3 rounded bg-gray-900 text-white placeholder-gray-400"></textarea>
+        <button class="w-full bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded text-white font-semibold transition">Envoyer</button>
+      </form>
+    </div>
+  </section>
 
-        return React.createElement(
-          'div', 
-          { className: 'bg-gray-900 text-white min-h-screen font-sans' },
-          React.createElement(
-            'section', 
-            { className: 'relative w-full h-screen overflow-hidden' },
-            React.createElement('img', {
-              src: images[current],
-              alt: 'TrottOps',
-              className: 'absolute inset-0 w-full h-full object-cover transition-opacity duration-1000'
-            }),
-            React.createElement('div', { 
-              className: 'absolute inset-0 bg-blue-900 bg-opacity-40' 
-            }),
-            React.createElement(
-              'div', 
-              { className: 'relative z-10 h-full flex flex-col justify-center items-center text-center px-4' },
-              React.createElement(
-                'h2', 
-                { className: 'text-4xl md:text-5xl font-extrabold mb-4' }, 
-                'Gestion complète. Sans stress.'
-              ),
-              React.createElement(
-                'p', 
-                { className: 'text-lg text-gray-200 mb-6 max-w-xl' },
-                'TrottOps s\'occupe de toutes les opérations de gestion locative de vos trottinettes : recharge, maintenance, sécurité, et gestion client.'
-              ),
-              React.createElement(
-                'a', 
-                { 
-                  href: '#contact', 
-                  className: 'inline-block bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-xl text-white font-semibold transition' 
-                }, 
-                'Demander un devis'
-              )
-            )
-          )
-        );
-      };
+  <!-- Footer -->
+  <footer class="text-center py-6 text-gray-400 bg-gray-900 text-sm">
+    <div class="mb-2">© 2025 TrottOps. Tous droits réservés.</div>
+    <div class="space-x-4">
+      <a href="cgu.html" class="hover:text-white underline">CGU</a>
+      <a href="cgv.html" class="hover:text-white underline">CGV</a>
+    </div>
+  </footer>
 
-      ReactDOM.render(React.createElement(App), document.getElementById("root"));
-    </script>
-  </body>
+  <script>
+    let current = 0;
+    const images = document.querySelectorAll('.carousel-image');
+    setInterval(() => {
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    }, 5000);
+  </script>
+</body>
 </html>
